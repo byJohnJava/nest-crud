@@ -27,24 +27,24 @@ export class UserController {
   }
 
   @Get(':id')
-  async findOne(@Param() params) {
-    return { user: {}, params };
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    return { user: {}, id };
   }
 
   @Put(':id')
   async update(
-    @Param() params,
+    @Param('id', ParseIntPipe) id: number,
     @Body() { name, email, password }: UpdatePutUserDTO,
   ) {
-    return { params, name, email, password, method: 'PUT' };
+    return { id, name, email, password, method: 'PUT' };
   }
 
   @Patch(':id')
   async updatePartial(
-    @Param() params,
+    @Param('id', ParseIntPipe) id: number,
     @Body() { name, email, password }: UpdatePatchUserDTO,
   ) {
-    return { params, name, email, password, method: 'PATCH' };
+    return { id, name, email, password, method: 'PATCH' };
   }
 
   @Delete(':id')
